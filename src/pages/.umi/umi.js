@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from '/Users/zh/Documents/web/react/coin-front/node_modules/umi-build-dev/lib/findRoute.js';
+} from '/Users/zh/Documents/web/react/coin-crypto/node_modules/umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');

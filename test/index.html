@@ -9,13 +9,39 @@
 </head>
 
 <body>
-    <script>
-        const url = 'wss://api.huobi.pro/ws';
-        const url_aws = 'wss://api-aws.huobi.pro/ws'
-        const ws = new WebSocket(url_aws);
-        ws.onopen = e => console.log(e);
-        ws.onmessage = async e => await e.data.text().then(e => console.log(e))
+    <p style="color:red">
+        <div>这里div</div>
+    </p>
 
+    <script>
+        // const url = 'wss://api.huobi.pro/ws';
+        // const url_aws = 'wss://api-aws.huobi.pro/ws'
+        // const ws = new WebSocket(url_aws);
+        // ws.onopen = e => console.log(e);
+        // ws.onmessage = async e => await e.data.text().then(e => console.log(e))
+
+
+        // url
+        const url = 'wss://real.okex.com:8443/ws/v3'
+        // const url = 'wss://real.okex.com:10441/websocket?compress=true'
+        const ws = new WebSocket(url)
+
+        ws.onopen = function open() {
+
+            ws.send('{"channel":"ok_sub_futureusd_btc_depth_quarter","event":"addChannel"}')
+        }
+        ws.onmessage = function (data) {
+            if (data instanceof String) {
+                console.log(data)
+            } else {
+                try {
+                    data.data.text().then(e=>console.log(e))
+                    console.log( data)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+        }
     </script>
 </body>
 

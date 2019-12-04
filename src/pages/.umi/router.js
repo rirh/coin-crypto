@@ -47,7 +47,7 @@ const routes = [
       {
         component: () =>
           React.createElement(
-            require('/Users/zh/Documents/web/react/coin-front/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+            require('/Users/zh/Documents/web/react/coin-crypto/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
               .default,
             { pagesPath: 'src/pages', hasRoutesInConfig: true },
           ),
@@ -61,7 +61,7 @@ const routes = [
   {
     component: () =>
       React.createElement(
-        require('/Users/zh/Documents/web/react/coin-front/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
+        require('/Users/zh/Documents/web/react/coin-crypto/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
           .default,
         { pagesPath: 'src/pages', hasRoutesInConfig: true },
       ),
