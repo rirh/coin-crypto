@@ -1,7 +1,19 @@
-.wapper {
-  padding: 10px 15px;
+.tab_wapper {
+  height  : 100%;
+  width   : 100%;
+  overflow: scroll;
+
+}
+
+.list_wapper {
+  overflow: scroll;
+  flex    : 1;
 }
 
 .item {
-  margin: 20px;
+  margin: 10px 15px;
+}
+
+.border {
+  font-weight: bolder;
 }

@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import findRoute, {
   getUrlQuery,
-} from '/Users/zh/Documents/web/react/coin-crypto/node_modules/umi-build-dev/lib/findRoute.js';
+} from '/Users/tigerzh/Documents/web/coin-crypto/node_modules/_umi-build-dev@1.16.7@umi-build-dev/lib/findRoute.js';
 
 // runtime plugins
 const plugins = require('umi/_runtimePlugin');
@@ -32,7 +32,7 @@ let clientRender = async () => {
     props = window.g_initialData;
   } else {
     const pathname = location.pathname;
-    const activeRoute = findRoute(require('@tmp/router').routes, pathname);
+    const activeRoute = findRoute(require('@@/router').routes, pathname);
     // 在客户端渲染前，执行 getInitialProps 方法
     // 拿到初始数据
     if (
@@ -84,7 +84,7 @@ if (!__IS_BROWSER) {
   serverRender = async (ctx = {}) => {
     // ctx.req.url may be `/bar?locale=en-US`
     const [pathname] = (ctx.req.url || '').split('?');
-    const history = require('@tmp/history').default;
+    const history = require('@@/history').default;
     history.replace(ctx.req.url);
     let props = {};
     const activeRoute =

@@ -1,5 +1,7 @@
 // ref: https://umijs.org/config/
 import config from './config';
+import { Tabs } from 'antd';
+
 
 export default {
   treeShaking: true,
@@ -49,5 +51,17 @@ export default {
         },
       },
     ],
+    // ["import", {
+    //   "libraryName": "antd",
+    //   "libraryDirectory": "es",
+    //   "style": "css" // `style: true` 会加载 less 文件
+    // }]
+    // ['umi-plugin-mobx', {
+    //   modelName: 'store', // or "stores", defaults to "store", you can set "model" like dva.
+    //   exclude: [/^\$/, (filename) => filename.includes('__')]
+    // }],
+    // ['umi-plugin-routes', {
+    //   exclude: [/stores/] // ignore **/stores/**/*.*, you can set /models/ like dva.
+    // }]
   ],
 };
