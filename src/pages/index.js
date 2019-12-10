@@ -81,23 +81,23 @@ export default class index extends Component {
     ]
   }
   async componentDidMount() {
-    const ws = new WebSocket('wss://api-aws.huobi.pro/ws');
+    // const ws = new WebSocket('wss://api-aws.huobi.pro/ws');
 
-    ws.onopen = function (evt) {
-      console.log("Connection open ...");
-      ws.send("Hello WebSockets!");
-    };
+    // ws.onopen = function (evt) {
+    //   console.log("Connection open ...");
+    //   ws.send("Hello WebSockets!");
+    // };
 
-    ws.onmessage = function (evt) {
-      ws.send({ "sub": "topic to sub", "id": "id generate by client" }, s => console.log(s));
+    // ws.onmessage = function (evt) {
+    //   ws.send({ "sub": "topic to sub", "id": "id generate by client" }, s => console.log(s));
 
-      console.log("Received Message: " + evt.data);
-      ws.close();
-    };
+    //   console.log("Received Message: " + evt.data);
+    //   ws.close();
+    // };
 
-    ws.onclose = function (evt) {
-      console.log("Connection closed.");
-    };
+    // ws.onclose = function (evt) {
+    //   console.log("Connection closed.");
+    // };
 
     const { data } = await axios({
       url: '/v1/common/symbols',
