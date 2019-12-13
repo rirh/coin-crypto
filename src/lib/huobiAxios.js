@@ -84,8 +84,8 @@ function get_body() {
 export default params => {
     //请求
     let { method, url, data } = params;
-    url = `${config.huobi.url}${url}`;    
-    params.url = url;    
+    url = `${config.huobi.url}${url}`;
+    params.url = url;
     if (method) {
         const host = url.parse(path).host;
         const cpath = url.parse(path).path;
@@ -94,6 +94,6 @@ export default params => {
         params.body = body;
         params.url = `${params.url}?${payload}`;
     }
-    if (params.header) params.header = DEFAULT_HEADERS;
+    // if (!params.header) params.header = DEFAULT_HEADERS;
     return axios(params);
 }

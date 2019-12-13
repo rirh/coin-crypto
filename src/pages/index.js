@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from '@/lib/huobiAxios.js';
+import axioshuobi from '@/lib/huobiAxios.js';
+import axiosok from '@/lib/okexAxios.js';
 import styles from './index.scss'
 import { Tabs, Table, Divider, Tag } from 'antd';
 const { TabPane } = Tabs;
@@ -99,9 +100,19 @@ export default class index extends Component {
     //   console.log("Connection closed.");
     // };
 
-    const { data } = await axios({
+    const { data } = await axioshuobi({
       url: '/v1/common/symbols',
     })
+    this.setState({
+      data
+    }, () => {
+      this.setState({ loading: false })
+    })
+    const res = await axiosok({
+      url: '/api/account/v3/wallet'
+    })
+    console.log(res);
+
     // const res = await axios({
     //   url: '/market/history/kline?symbol=btcusdt&period=1min&size=200',
     //   // url: '/v1/common/symbols',
@@ -109,11 +120,7 @@ export default class index extends Component {
 
 
 
-    this.setState({
-      data
-    }, () => {
-      this.setState({ loading: false })
-    })
+
   }
   callback(key) {
     console.log(key);

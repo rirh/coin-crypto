@@ -43,8 +43,7 @@
  * 
  */
 import config from '../../config.js'
-//格式化时间
-import moment from 'moment';
+
 //区块加密
 import crypto from 'crypto-js';
 //url 格式化
@@ -57,43 +56,28 @@ const DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36"
 }
 
-function sign_sha(method, baseurl, path, data) {
+function sign_sha(time, method, path, sk) {
     let result = "";
-    const pars = [];
-    for (let item in data) {
-        pars.push(item + "=" + encodeURIComponent(data[item]));
-    }
-    // 连接& 并且按照ASCII码的顺序对参数名进行排序
-    result = pars.sort().join("&");
-    // 后面添加换行符 “\n”
-    const meta = [method, baseurl, path, p].join('\n');
-    var hash = crypto.HmacSHA256(meta, config.huobi.SK);
-    var Signature = encodeURIComponent(crypto.enc.Base64.stringify(hash));
-    result += `&Signature=${Signature}`;
+    const sign = crypto.HmacSHA256(`${time}${method}${path}`, sk);    
+    result = crypto.enc.Base64.stringify(sign)
     return result
 }
-function get_body() {
-    return {
-        AccessKeyId: config.huobi.AK,
-        SignatureMethod: "HmacSHA256",
-        SignatureVersion: 2,
-        // 格式化时间
-        Timestamp: moment.utc().format('YYYY-MM-DDTHH:mm:ss'),
-    };
-}
+
 export default params => {
     //请求
-    let { method, url, data } = params;
-    url = `${config.huobi.url}${url}`;    
-    params.url = url;    
-    if (method) {
-        const host = url.parse(path).host;
-        const cpath = url.parse(path).path;
-        var body = Object.assign(get_body(), data);
-        var payload = sign_sha(method, host, cpath, body);
-        params.body = body;
-        params.url = `${params.url}?${payload}`;
+    let { method, data } = params;
+    let urls = `${config.okex.url}${params.url}`;
+    params.url = urls;
+    const timestamp = new Date().getTime();
+    // const host = url.parse(path).host;
+    const path = url.parse(urls).path;
+    params.header = {
+        "OK-ACCESS-KEY": config.okex.AK,
+        "OK-ACCESS-SIGN": sign_sha(timestamp, method || 'GET', path, config.huobi.SK),
+        "OK-ACCESS-TIMESTAMP": timestamp,
+        "OK-ACCESS-PASSPHRASE": config.okex.Passphrase,
+        "Content-Type": "application/json",
     }
-    if (params.header) params.header = DEFAULT_HEADERS;
+    if (!params.header) params.header = DEFAULT_HEADERS;
     return axios(params);
 }

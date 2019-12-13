@@ -15,7 +15,7 @@ export default async params => {
         if (params.method === 'POST')
             params.header = {
                 ...params.header,
-                "content-type": "application/x-www-form-urlencoded"
+                // "content-type": "application/x-www-form-urlencoded"
             }
     }
     params.method = params.method || 'GET';

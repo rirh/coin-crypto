@@ -10,10 +10,17 @@
 
 <body>
     <p style="color:red">
-        <div>这里div</div>
+        <div onclick="handleOpen()">这里div</div>
+        <a href="mailto:yy@qq.com?cc=xx@qq.com&bcc=pp@qq.com;oo@qq.com&subject=邮件主题&body邮件内容">发送</a>
     </p>
 
     <script>
+        function handleOpen() {
+            // open('https://www.baidu.com', '_self', null, false)
+            const url = "https://blog.csdn.net/u011497228/article/details/102922952";
+            window.open(url, "_blank", "scrollbars=yes,resizable=1,modal=false,alwaysRaised=yes");
+
+        }
         // const url = 'wss://api.huobi.pro/ws';
         // const url_aws = 'wss://api-aws.huobi.pro/ws'
         // const ws = new WebSocket(url_aws);
@@ -35,8 +42,8 @@
                 console.log(data)
             } else {
                 try {
-                    data.data.text().then(e=>console.log(e))
-                    console.log( data)
+                    data.data.text().then(e => console.log(e))
+                    console.log(data)
                 } catch (err) {
                     console.log(err)
                 }

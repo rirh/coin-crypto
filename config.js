@@ -15,8 +15,12 @@ module.exports = {
         wws_aws: 'wss://api-aws.huobi.pro/ws',
     },
     okex: {
-        url: 'https://www.okex.com/',
-        api: 'https://www.okex.com/',
-        ws: 'wss://real.okex.com:8443/ws/v3'
+        url: 'https://www.okex.com',
+        api: 'https://www.okex.com',
+        ws: 'wss://real.okex.com:8443/ws/v3',
+        AK: '87efd142-8a30-491a-a08b-a9314498bbb9',
+        SC: '0B62FB9E4370A30DEB8BE6C0B2205D46',
+        Passphrase: 'Okex774140913'
+
     }
 }
